@@ -2,12 +2,16 @@ package com.tires.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,22 +35,32 @@ import com.tires.web.services.ProductServices;
 @SessionAttributes("products")
 public class SearchController extends Exception {
 
+	@GetMapping("shared/bysizeform")
+	public String bysizeform() {
+		return "shared/bysizeform";
+	}
+
 	@ResponseBody
-	@GetMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public ProductJsonResponse SearchProduct(@RequestParam("width") int w, @RequestParam("profile") int p,
-			@RequestParam("rimsize") int r, HttpSession session) {
+	@GetMapping(value = "/searchbysize", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ProductJsonResponse SearchBySize(@ModelAttribute @Valid Search s, BindingResult result, HttpSession session) {
 
 		ProductJsonResponse respone = new ProductJsonResponse();
 
-		List<Product> products = new ArrayList<Product>();
+		if (result.hasErrors()) {
+			Map<String, String> errors = result.getFieldErrors().stream()
+					.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
 
-		ProductServices obj = new ProductServices();
+			respone.setValidated(false);
+			respone.setErrorMessages(errors);
+		} else {
+			List<Product> products = new ArrayList<Product>();
 
-		products = obj.GetProducts(new Search(w, p, r));
+			ProductServices obj = new ProductServices();
 
-		respone.setValidated(true);
-		session.setAttribute("products", products);
+			products = obj.GetProducts(s);
+			respone.setValidated(true);
+			session.setAttribute("products", products);
+		}
 
 		return respone;
 	}

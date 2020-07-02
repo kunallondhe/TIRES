@@ -1,34 +1,32 @@
 package com.tires.web.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class Search {
 
-	private int width;
-	private int profile;
-	private int rimsize;
+	@NotBlank(message = "Enter width")
+	private String width;
+	@NotBlank(message="Enter profile")
+	private String profile;
+	@NotBlank(message="Enter rimsize")
+	private String rimsize;
 	
-    public Search(int width, int profile, int rimsize) {
-		super();
-		this.width = width;
-		this.profile = profile;
-		this.rimsize = rimsize;
-	}
-	
-	public int getWidth() {
+	public String getWidth() {
 		return width;
 	}
-	public void setWidth(int width) {
+	public void setWidth(String width) {
 		this.width = width;
 	}
-	public int getProfile() {
+	public String getProfile() {
 		return profile;
 	}
-	public void setProfile(int profile) {
+	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	public int getRimsize() {
+	public String getRimsize() {
 		return rimsize;
 	}
-	public void setRimsize(int rimsize) {
+	public void setRimsize(String rimsize) {
 		this.rimsize = rimsize;
 	}
 }

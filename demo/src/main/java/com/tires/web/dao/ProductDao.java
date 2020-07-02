@@ -50,9 +50,9 @@ public class ProductDao {
 			Session session = sf.openSession();
 			
 			Query query = session.createQuery("from Product where width = :width and profile = :profile and rimsize = :rimsize");
-			query.setParameter("width", s.getWidth());
-			query.setParameter("profile", s.getProfile());
-			query.setParameter("rimsize", s.getRimsize());
+			query.setParameter("width", Integer.parseInt(s.getWidth()));
+			query.setParameter("profile", Integer.parseInt(s.getProfile()));
+			query.setParameter("rimsize", Integer.parseInt(s.getRimsize()));
 			
 			products = (List<Product>)query.getResultList();
 			

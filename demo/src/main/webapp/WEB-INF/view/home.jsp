@@ -23,11 +23,9 @@
 		<div id="main">
 			<div class="cl">&nbsp;</div>
 			<!-- Content -->
-			<div id="content">
-				
-			</div>
+			<div id="content"></div>
 			<!-- End Content -->
-			<%@include file="./shared/search.jsp"%>
+			<%@include file="./shared/bysizeform.jsp"%>
 			<div class="cl">&nbsp;</div>
 		</div>
 		<!-- End Main -->
