@@ -1,19 +1,11 @@
 package com.tires.web.model;
 
-import java.util.List;
 import java.util.Map;
 
 public class ProductJsonResponse {
-	private String products;
 	private boolean validated;
 	private Map<String, String> errorMessages;
 	
-	public String getProducts() {
-		return products;
-	}
-	public void setProducts(String products) {
-		this.products = products;
-	}
 	public boolean isValidated() {
 		return validated;
 	}
