@@ -6,17 +6,16 @@ public class TireInitializer extends AbstractAnnotationConfigDispatcherServletIn
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { TireConfig.class };
-	}
-
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
 		return null;
 	}
 
 	@Override
-	protected String[] getServletMappings() {
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] { TireConfig.class };
+	}
 
+	@Override
+	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
 

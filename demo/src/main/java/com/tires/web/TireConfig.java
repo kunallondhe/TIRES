@@ -50,7 +50,7 @@ public class TireConfig implements WebMvcConfigurer {
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("/WEB-INF/messages/search");
+		messageSource.setBasename("/WEB-INF/locale/search");
 		messageSource.setDefaultEncoding("UTF-8");
 		messageSource.setFallbackToSystemLocale(false);
 		messageSource.setCacheSeconds(1);
