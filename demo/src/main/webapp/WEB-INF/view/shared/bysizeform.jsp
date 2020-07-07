@@ -1,7 +1,7 @@
 <style type="text/css">
-  span.error{
-    color: red;
-  }
+span.error {
+	color: red;
+}
 </style>
 
 <!-- Sidebar -->
@@ -19,7 +19,7 @@
 						<div>
 							<label>Width</label>
 						</div>
-						<div style=" clear: both;">
+						<div>
 							<input type="text" name="width" id="width">
 						</div>
 					</div>

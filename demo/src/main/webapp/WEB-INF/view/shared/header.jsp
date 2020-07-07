@@ -17,7 +17,7 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="#" class="active">Home</a></li>
-			<li><a href="#">My Account</a></li>
+			<li><a href="#">Product</a></li>
 		</ul>
 	</div>
 	<!-- End Navigation -->

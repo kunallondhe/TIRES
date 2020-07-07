@@ -22,6 +22,8 @@ public class ProductListController {
 		List<Product> ppl2 = ((List<Product>)session.getAttribute("products"));
 		mv.setViewName("product/plp");
 		mv.addObject("products", ppl2);
+		
+		session.removeAttribute("products");
 		return mv;
 	}
 }
