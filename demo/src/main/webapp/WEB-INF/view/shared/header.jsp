@@ -16,8 +16,8 @@
 	<!-- Navigation -->
 	<div id="navigation">
 		<ul>
-			<li><a href="#" class="active">Home</a></li>
-			<li><a href="#">Product</a></li>
+			<li><a href="./">Home</a></li>
+			<li><a href="product/add">Product</a></li>
 		</ul>
 	</div>
 	<!-- End Navigation -->

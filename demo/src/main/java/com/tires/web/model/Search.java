@@ -17,18 +17,6 @@ public class Search implements Serializable {
 	@NotBlank(message = "{notblank.search.rimsize}")
 	private String rimsize;
 
-	@Autowired
-	private MessageSource ms;
-	
-	
-	public MessageSource getMs() {
-		return ms;
-	}
-
-	public void setMs(MessageSource ms) {
-		this.ms = ms;
-	}
-
 	public String getWidth() {
 		return width;
 	}

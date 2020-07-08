@@ -1,3 +1,5 @@
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <style type="text/css">
 span.error {
 	color: red;
@@ -17,7 +19,7 @@ span.error {
 				<div>
 					<div>
 						<div>
-							<label>Width</label>
+							<label><spring:message code="label.search.width" /></label>
 						</div>
 						<div>
 							<input type="text" name="width" id="width">
@@ -25,7 +27,7 @@ span.error {
 					</div>
 					<div>
 						<div>
-							<label>Profile</label>
+							<label><spring:message code="label.search.profile" /></label>
 						</div>
 						<div>
 							<input type="text" id="profile" name="profile">
@@ -33,7 +35,7 @@ span.error {
 					</div>
 					<div>
 						<div>
-							<label>Rim Size</label>
+							<label><spring:message code="label.search.rimsize" /></label>
 						</div>
 						<div>
 							<input type="text" id="rimsize" name="rimsize">
@@ -43,16 +45,13 @@ span.error {
 					<div>
 						<div></div>
 						<div>
-							<button class="search-submit" type="submit">Search</button>
+							<button class="search-submit" name="search" type="submit">Search</button>
 						</div>
 					</div>
 				</div>
 			</form>
 
 		</div>
-		<p>
-			<a href="<core:url value="/add"/>" class="bul">Add Product</a>
-		</p>
 	</div>
 	<!-- End Search -->
 	<!-- Categories -->

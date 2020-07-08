@@ -1,5 +1,7 @@
 package com.tires.web;
 
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
@@ -29,7 +32,7 @@ import com.tires.web.services.ProductServices;
 @SessionAttributes("products")
 public class SearchController extends Exception {
 
-	@GetMapping("shared/bysizeform")
+	@GetMapping("/bysizeform")
 	public String bysizeform() {
 		return "shared/bysizeform";
 	}

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -21,11 +21,16 @@
 		<%@include file="./shared/header.jsp"%>
 		<!-- Main -->
 		<div id="main">
-			<div class="cl">&nbsp;</div>
+			<div class="cl">${message}</div>
 			<!-- Content -->
-			<div id="content"></div>
-			<!-- End Content -->
-			<%@include file="./shared/bysizeform.jsp"%>
+			<core:if test="${isLogin == false}">
+				<div id="content"></div>
+				<%@include file="./shared/bysizeform.jsp"%>
+			</core:if>
+			<core:if test="${isLogin == true}">
+				<div id="content"><%@include file="./login.jsp"%></div>
+			</core:if>
+
 			<div class="cl">&nbsp;</div>
 		</div>
 		<!-- End Main -->

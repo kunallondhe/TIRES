@@ -5,7 +5,7 @@ $('button[type=submit]').click(
 			// Remove all errors
 			$('input').next().remove();
 			$('input').next().remove();
-			
+
 			var url = 'searchbysize'
 			var width = $("#width").val();
 			var profile = $("#profile").val();
@@ -21,12 +21,11 @@ $('button[type=submit]').click(
 
 					} else {
 						// Set error messages
-						$.each(res.errorMessages,
-								function(key, value) {
-									$('input[name=' + key + ']').after(
-											'<br/><span class="error">' + value
-													+ '</span>');
-								});
+						$.each(res.errorMessages, function(key, value) {
+							$('input[name=' + key + ']').after(
+									'<br/><span class="error">' + value
+											+ '</span>');
+						});
 					}
 				}
 			});
