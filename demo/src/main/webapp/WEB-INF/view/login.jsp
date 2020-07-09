@@ -1,7 +1,6 @@
 <%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style type="text/css">
-
 </style>
 <div class="login">
 	<form action="signin" method="post">
@@ -24,12 +23,16 @@
 			<div>
 				<button type="submit" name="login">Login</button>
 			</div>
+			<div>&nbsp;</div>
+			<div>
+				<core:if test="${not empty sessionScope.message}">
+					<span style="color: green"><core:out
+							value="${sessionScope.message}" /></span>
+					<core:remove var="message" scope="session" />
+				</core:if>
+			</div>
 		</div>
 	</form>
 </div>
 <br />
-<core:if test="${not empty sessionScope.message}">
-	<span style="color: green"><core:out
-			value="${sessionScope.message}" /></span>
-	<core:remove var="message" scope="session" />
-</core:if>
+

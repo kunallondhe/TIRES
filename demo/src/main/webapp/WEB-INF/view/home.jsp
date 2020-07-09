@@ -21,16 +21,18 @@
 		<%@include file="./shared/header.jsp"%>
 		<!-- Main -->
 		<div id="main">
-			<div class="cl">${message}</div>
+			<div class="cl"></div>
 			<!-- Content -->
-			<core:if test="${isLogin == false}">
-				<div id="content"></div>
+			<core:if test="${sessionScope.isLogin eq false and sessionScope.isProduct eq false}">
+			    <div id="content"></div>
 				<%@include file="./shared/bysizeform.jsp"%>
 			</core:if>
-			<core:if test="${isLogin == true}">
+			<core:if test="${sessionScope.isLogin eq true}">
 				<div id="content"><%@include file="./login.jsp"%></div>
 			</core:if>
-
+			<core:if test="${sessionScope.isProduct eq true}">
+				<div id="content"><%@include file="./product/add.jsp"%></div>
+			</core:if>
 			<div class="cl">&nbsp;</div>
 		</div>
 		<!-- End Main -->

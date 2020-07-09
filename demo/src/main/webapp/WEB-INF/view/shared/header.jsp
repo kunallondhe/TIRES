@@ -1,4 +1,6 @@
-
+<%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!-- Header -->
 <div id="header">
 	<h1 id="logo">
@@ -6,11 +8,11 @@
 	</h1>
 	<!-- Cart -->
 	<div id="cart">
-		<a href="#" class="cart-link">Your Shopping Cart</a>
-		<div class="cl">&nbsp;</div>
-		<span>Articles: <strong>4</strong></span> &nbsp;&nbsp; <span>Cost:
-			<strong>$250.99</strong>
-		</span>
+		<core:if test="${not empty sessionScope.username}">
+			<a href="signout" class="cart-link">Logout</a>
+			<div class="cl">&nbsp;</div>
+			<span><strong>You are logged in as</strong></span> &nbsp;&nbsp;<span><strong>${sessionScope.username}</strong></span>
+		</core:if>
 	</div>
 	<!-- End Cart -->
 	<!-- Navigation -->

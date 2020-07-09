@@ -1,34 +1,31 @@
 package com.tires.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
- import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
 	@RequestMapping("/login")
-	public ModelAndView Login() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("isLogin","true");
-		mv.setViewName("home");
-		return mv;
-	}
-
-	@RequestMapping("/signin")
-	public ModelAndView SignIn() {
+	public ModelAndView Login(HttpSession session) {
 		SecurityContext context = SecurityContextHolder.getContext();
 		ModelAndView mv = new ModelAndView();
+		if (context.getAuthentication().getName() != "admin") {
+			session.removeAttribute("username");
+			session.setAttribute("isLogin", true);
+		}
 		mv.setViewName("home");
-		mv.addObject("message", "You are logged in as " + context.getAuthentication().getName());
 		return mv;
 	}
-
-	@RequestMapping("/signout")
-	public ModelAndView SignOut() {
+	
+	@RequestMapping("/errorSignIn")
+	public ModelAndView ErrorSignin(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
+		mv.setViewName("home");
 		return mv;
 	}
 }

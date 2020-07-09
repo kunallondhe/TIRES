@@ -1,4 +1,4 @@
-$('button[type=submit]').click(
+$('button[name=search]').click(
 		function(e) {
 			// Prevent default submission of form
 			e.preventDefault();

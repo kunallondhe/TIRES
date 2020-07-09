@@ -14,23 +14,41 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("1").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("{noop}1").roles("ADMIN");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-        .authorizeRequests()
-           .antMatchers("/resources/**").permitAll()
-           .antMatchers("/WEB-INF/locale/**").permitAll()
-           .antMatchers("/shared/**").permitAll()
-           .antMatchers("/","/searchbysize","/bysizeform","/home").permitAll()
-           .antMatchers("/product/plp").permitAll()
-           .antMatchers("/product/add").hasRole("ADMIN")
-           .anyRequest().authenticated()
-           .and()
-       .formLogin()
-           .loginPage("/login")
-           .permitAll();
+		http.authorizeRequests().antMatchers("/resources/**").permitAll().antMatchers("/WEB-INF/locale/**").permitAll()
+				.antMatchers("/shared/**").permitAll()
+				.antMatchers("/", "/searchbysize", "/bysizeform", "/home").permitAll()
+				.antMatchers("/product/plp").permitAll().antMatchers("/product/add").hasRole("ADMIN").anyRequest()
+				.authenticated().and()
+				.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/signin")
+				.usernameParameter("userid")
+				.passwordParameter("passwd")
+				.successHandler((req, res, auth) -> {
+					req.getSession().setAttribute("isLogin", true);
+					req.getSession().setAttribute("username", auth.getName());
+					res.sendRedirect("home");
+				}).failureHandler((req, res, exp) -> {
+					String errMsg = "";
+					if (exp.getClass().isAssignableFrom(BadCredentialsException.class)) {
+						errMsg = "Invalid username or password.";
+					} else {
+						errMsg = "Unknown error - " + exp.getMessage();
+					}
+					req.getSession().setAttribute("message", errMsg);
+					req.getSession().removeAttribute("username");
+					req.getSession().setAttribute("isLogin", true);
+					res.sendRedirect("errorSignIn");
+				}).permitAll().and().logout().logoutUrl("/signout").logoutSuccessHandler((req, res, auth) -> {
+					req.getSession().removeAttribute("username");
+					req.getSession().setAttribute("isLogin", true);
+					req.getSession().setAttribute("message", "You are logged out successfully.");
+					res.sendRedirect("errorSignIn");
+				}).permitAll().and().csrf().disable();
 	}
 }
