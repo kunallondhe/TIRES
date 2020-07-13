@@ -19,7 +19,12 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="./">Home</a></li>
-			<li><a href="product/add">Product</a></li>
+			<core:if test="${empty sessionScope.username}">
+				<li><a href="./login">Admin Section</a></li>
+			</core:if>
+			<core:if test="${not empty sessionScope.username}">
+				<li><a href="./view">Add Product</a></li>
+			</core:if>
 		</ul>
 	</div>
 	<!-- End Navigation -->

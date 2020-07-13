@@ -1,31 +1,38 @@
 package com.tires.web.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonView;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import org.springframework.context.annotation.Configuration;
 
 @Entity
-public class Product {
+@Configuration
+public class Product implements Serializable {
 	@Id
-	private int itemNumber;
+	private int itemnumber;
+	@Min(value = 0L, message = "{notblank.add.width}")
 	private int width;
 	private int profile;
 	private int rimsize;
+	@NotBlank(message = "{notblank.add.localisedName}")
 	private String localisedName;
 	@Column(length = 4000)
 	private String description;
 	private String speedRating;
-	private int loadIndex;
+	private String loadIndex;
+	@NotBlank(message = "{notblank.add.image}")
 	private String image;
 
 	public int getItemNumber() {
-		return itemNumber;
+		return itemnumber;
 	}
 
-	public void setItemNumber(int itemNumber) {
-		this.itemNumber = itemNumber;
+	public void setItemNumber(int itemnumber) {
+		this.itemnumber = itemnumber;
 	}
 
 	public int getWidth() {
@@ -76,11 +83,11 @@ public class Product {
 		this.speedRating = speedRating;
 	}
 
-	public int getLoadIndex() {
+	public String getLoadIndex() {
 		return loadIndex;
 	}
 
-	public void setLoadIndex(int loadIndex) {
+	public void setLoadIndex(String loadIndex) {
 		this.loadIndex = loadIndex;
 	}
 
